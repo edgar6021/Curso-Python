@@ -1,0 +1,119 @@
+
+import iconos_rc
+from datetime import datetime
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.uic import loadUi
+from PyQt5.QtCore import Qt, QThread, pyqtSignal
+from PyQt5.QtCore import QTimer
+import sys
+import ping3
+import time
+from datetime import datetime
+from PyQt5.QtCore import Qt, QThread, pyqtSignal
+from PyQt5.QtWidgets import QApplication, QMainWindow, QTextEdit, QPushButton, QVBoxLayout, QWidget, QMessageBox, QComboBox, QVBoxLayout
+
+class MiVentana(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        # Cargar el archivo .ui
+        loadUi('IFC.UI', self)
+
+        # Configurar lo que necesites hacer con la interfaz aquí
+        self.UPLABEL.setVisible(False)
+        self.UPICON.setVisible(False)
+        self.DOWNLABEL.setVisible(True)
+        self.DOWNICON.setVisible(True)
+        self.ping_thread = None
+        self.ping_running = False
+        # Configurar temporizador para realizar el ping cada 5 segundos
+        self.timer = QTimer(self)
+        self.timer.start(5000)
+        self.start_stop_ping()
+    
+    def start_stop_ping(self):
+        if self.ping_running:
+            self.ping_thread.stop()
+            self.start_stop_button.setText("Iniciar Ping")
+            self.ping_running = False
+            current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            #_, selected_name = self.selected_item
+            #self.text_edit.append(f"{current_time}: El Ping se detuvo para {selected_name}\n")
+        else:
+            IP, selected_name = self.selected_item
+            self.ping_thread = PingThread(IP)
+            self.ping_thread.message.connect(self.update_text)
+            self.ping_thread.connection_lost.connect(self.show_connection_lost_message)
+            self.ping_thread.start()
+            self.start_stop_button.setText("Detener Ping")
+            self.ping_running = True
+            current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+            # Display the selected server name in the message
+            self.text_edit.append(f"{current_time}: Iniciando Ping para {selected_name}\n")
+
+
+    def update_text(self, text, color=None):
+        if color:
+            self.text_edit.insertHtml(f'<font color="{color}">{text}</font><br>')
+        else:
+            self.text_edit.append(text)
+
+    def show_connection_lost_message(self):
+        
+        if not self.connection_lost_shown:
+            
+            self.connection_lost_shown = True
+            QMessageBox.critical(self, f"Conexión Perdida", "Se ha perdido la conexión con el servidor {selected_name}\n")
+
+class PingThread(QThread):
+    message = pyqtSignal(str, str)
+    connection_lost = pyqtSignal()
+
+    def __init__(self, ip):
+        super().__init__()
+        self.ip = ip
+        self.stop_flag = False
+        self.connected = False
+
+    def run(self):
+        while not self.stop_flag:
+            inicio = time.time()
+            respuesta = ping3.ping(self.ip)
+            fin = time.time()
+            tiempo_respuesta = int((fin - inicio) * 1000)
+
+            if not self.connected:
+                if tiempo_respuesta <= 200:
+                    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                    message = f"{current_time}: Conexión exitosa."
+                    self.message.emit(message, 'green')
+                    self.connected = True
+
+                elif tiempo_respuesta >= 201:
+                    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                    message = f"{current_time}: Se ha perdido la conexión con el servidor."
+                    self.message.emit(message, 'red')
+                    self.connection_lost.emit()
+
+            if respuesta is None:
+                current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                message = f"{current_time}: Reintentando...\n"
+                self.message.emit(message, 'black')
+                self.connected = False
+            time.sleep(2)
+
+    def stop(self):
+        self.stop_flag = True
+
+
+        
+
+def main():
+    app = QApplication(sys.argv)
+    ventana = MiVentana()
+    ventana.show()
+    sys.exit(app.exec_())
+
+if __name__ == '__main__':
+    main()

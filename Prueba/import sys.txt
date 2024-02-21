@@ -1,0 +1,63 @@
+import sys
+import iconos_rc
+import ping3
+import time
+import subprocess
+from datetime import datetime
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.uic import loadUi
+from PyQt5.QtCore import Qt, QThread, pyqtSignal
+from PyQt5.QtCore import QTimer
+
+class MiVentana(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        # Cargar el archivo .ui
+        loadUi('IFC.UI', self)
+
+        # Configurar lo que necesites hacer con la interfaz aquí
+        self.UPLABEL.setVisible(False)
+        self.UPICON.setVisible(False)
+        self.DOWNLABEL.setVisible(True)
+        self.DOWNICON.setVisible(True)
+        self.ping_thread = None
+        self.ping_running = False
+        # Configurar temporizador para realizar el ping cada 5 segundos
+        self.timer = QTimer(self)
+        self.timer.start(5000)
+        self.realizar_ping_extendido()
+    
+    def realizar_ping_extendido(self):
+        # Obtener el texto del campo IPSV
+        IP = self.IPSV.text()
+
+        # Realizar el ping extendido utilizando el comando ping en Windows
+        proceso_ping = subprocess.Popen(['ping', '-n', '10', IP], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        salida, errores = proceso_ping.communicate()
+
+        if proceso_ping.returncode == 0:
+            print('Ping exitoso:')
+            print(salida)
+            self.DOWNLABEL.setVisible(False)
+            self.DOWNICON.setVisible(False)
+            self.UPLABEL.setVisible(True)
+            self.UPICON.setVisible(True)
+        else:
+            print('Error en el ping:')
+            print(errores)
+            self.UPLABEL.setVisible(False)
+            self.UPICON.setVisible(False)
+            self.DOWNLABEL.setVisible(True)
+            self.DOWNICON.setVisible(True)
+
+        
+
+def main():
+    app = QApplication(sys.argv)
+    ventana = MiVentana()
+    ventana.show()
+    sys.exit(app.exec_())
+
+if __name__ == '__main__':
+    main()

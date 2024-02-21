@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>636</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="TITTLELABEL">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>621</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 170, 127);
+font: 75 36pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Evolution Monitor</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
+      <width>611</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(225, 225, 225);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>0</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 170, 127);
+font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
+     </property>
+     <property name="text">
+      <string>Servidor</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>0</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 170, 127);
+font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
+     </property>
+     <property name="text">
+      <string>IP</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>0</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 170, 127);
+font: 75 12pt &quot;MS Shell Dlg 2&quot;;</string>
+     </property>
+     <property name="text">
+      <string>ESTADO</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="NOMBRESV">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>120</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="IPSV">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>120</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="DOWNLABEL">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>120</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>DOWN</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="DOWNICON">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>120</y>
+      <width>31</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/newPrefix/delete.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="UPICON">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>120</y>
+      <width>31</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/newPrefix/check.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="UPLABEL">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>120</y>
+      <width>61</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>OpenHandCursor</cursorShape>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+font: 12pt &quot;MS Shell Dlg 2&quot;;</string>
+    </property>
+    <property name="text">
+     <string>ONLINE</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="table_widget">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>611</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Malgun Gothic</family>
+      <pointsize>13</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+      <strikeout>false</strikeout>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="cursor" stdset="0">
+     <cursorShape>ArrowCursor</cursorShape>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::StrongFocus</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="autoScroll">
+     <bool>true</bool>
+    </property>
+    <property name="autoScrollMargin">
+     <number>16</number>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
+    <property name="tabKeyNavigation">
+     <bool>true</bool>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>true</bool>
+    </property>
+    <property name="showGrid">
+     <bool>true</bool>
+    </property>
+    <property name="sortingEnabled">
+     <bool>false</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+    <property name="cornerButtonEnabled">
+     <bool>true</bool>
+    </property>
+    <attribute name="horizontalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderCascadingSectionResizes">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderMinimumSectionSize">
+     <number>39</number>
+    </attribute>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>190</number>
+    </attribute>
+    <attribute name="horizontalHeaderHighlightSections">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="verticalHeaderStretchLastSection">
+     <bool>false</bool>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>NOMBRE_SERVIDOR</string>
+     </property>
+     <property name="textAlignment">
+      <set>AlignLeading|AlignVCenter</set>
+     </property>
+     <property name="foreground">
+      <brush brushstyle="SolidPattern">
+       <color alpha="255">
+        <red>0</red>
+        <green>0</green>
+        <blue>0</blue>
+       </color>
+      </brush>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>IP_SERVIDOR</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>ESTADO</string>
+     </property>
+    </column>
+   </widget>
+   <zorder>UPICON</zorder>
+   <zorder>TITTLELABEL</zorder>
+   <zorder>frame</zorder>
+   <zorder>NOMBRESV</zorder>
+   <zorder>IPSV</zorder>
+   <zorder>DOWNLABEL</zorder>
+   <zorder>DOWNICON</zorder>
+   <zorder>UPLABEL</zorder>
+   <zorder>table_widget</zorder>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>636</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuMenu">
+    <property name="title">
+     <string>Menu</string>
+    </property>
+    <addaction name="actionAgregar_IP"/>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuMenu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionAgregar_IP">
+   <property name="text">
+    <string>Agregar servidor</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="iconos.qrc"/>
+ </resources>
+ <connections/>
+</ui>

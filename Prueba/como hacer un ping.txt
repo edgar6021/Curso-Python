@@ -1,0 +1,20 @@
+import ping3
+from ping3 import verbose_ping
+
+import time
+ping3.EXCEPTIONS = True
+
+while True:
+    try:
+        ping3.ping("10.0.0.73")
+        print("exito")
+    except ping3.errors.HostUnknown:  # error en especifico
+        print("La respuesta del host es muy lenta")
+    except ping3.errors.PingError:  # si el host no responde f `PingError`.
+        print("Host inaccesible")
+
+    time.sleep(5)
+
+import mysql.connector
+from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidget, QTableWidgetItem
+from functools import partial
